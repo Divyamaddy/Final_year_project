@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindLead</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="nav_logo">FindLead</a>
+
+         <ul class="nav_items">
+          <li class="nav_item">
+            <a href="{{url_for('main')}}" class="nav_link">Home</a>
+            <a href="{{url_for('about')}}" class="nav_link">About</a>
+            <a href="{{url_for('services')}}" class="nav_link">Services</a>
+            <a href="{{url_for('contact')}}" class="nav_link">Contact</a>
+          </li>
+        </ul>
+
+        <button class="button" id="form-open">Login</button>
+      </nav>
+    </header>
+
+    <style type="text/css">
+      th, td{
+        padding: 20px;
+      }
+    </style>
+
+    <!-- Home -->
+    <section class="home">
+      <div class="centerbox">
+        <center><h3>Contact Us</h3></center>
+        <br>
+        <table>
+          <tr>
+            <td><b>Web</b></td>
+            <td>:</td>
+            <td><u style="color: blue">www.leadfind.com</u></td>
+          </tr>
+           <tr>
+            <td><b>Email</b></td>
+            <td>:</td>
+            <td>leadfind.admin@gmail.com</td>
+          </tr>
+           <tr>
+            <td><b>Phone</b></td>
+            <td>:</td>
+            <td>+91 8756473674</td>
+          </tr>
+           <tr>
+            <td><b>Address</b></td>
+            <td>:</td>
+            <td>27th KM Milestone, Delhi - Meerut Expy, <br> Ghaziabad, Uttar Pradesh 201015</td>
+          </tr>
+        </table>          
+    </ul>
+        </p>
+      </div>
+    </section>
+
+
+  </body>
+</html>

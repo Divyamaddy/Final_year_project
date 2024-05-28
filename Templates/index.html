@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindLead</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="nav_logo">FindLead</a>
+
+        <ul class="nav_items">
+          <li class="nav_item">
+            <a href="{{url_for('main')}}" class="nav_link">Home</a>
+            <a href="{{url_for('about')}}" class="nav_link">About</a>
+            <a href="{{url_for('services')}}" class="nav_link">Services</a>
+            <a href="{{url_for('contact')}}" class="nav_link">Contact</a>
+          </li>
+        </ul>
+
+        <button class="button" id="form-open">Login</button>
+      </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="home">
+      <div class="form_container">
+        <i class="uil uil-times form_close"></i>
+        <center><span class="errormessage" style="color: red; text-align: "></span></center>
+        <!-- Login From -->
+        <div class="form login_form">
+          <form action="#">
+            <h2>Login</h2>
+
+            <div class="input_box">
+              <input type="number" id="signphone" placeholder="Enter your phone" required />
+              <i class="uil uil-phone email"></i>
+            </div>
+            <div class="input_box">
+              <input type="password" id="signpassword" placeholder="Enter your password" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+
+
+            <button class="button" id="signin-btn" type="button">Login Now</button>
+
+            <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+          </form>
+        </div>
+
+        <!-- Signup From -->
+        <div class="form signup_form">
+          <form action="#">
+            <h2>Signup</h2>
+            <div class="input_box">
+              <input type="name" placeholder="Enter your name" required id="regusername" />
+              <i class="uil uil-user email"></i>
+            </div>
+            <div class="input_box">
+              <input type="email" placeholder="Enter your email" required id="regemail" />
+              <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_box">
+              <input type="number" placeholder="Enter your phone" required id="regphone" />
+              <i class="uil uil-phone email"></i>
+            </div>
+            <div class="input_box">
+              <input type="password" placeholder="Create password" required id="regpassword" />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+            
+
+            <button class="button" id="signup-btn" type="button">Signup Now</button>
+
+            <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+       <script src="{{ url_for('static', filename='script.js') }}"></script>
+       <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+       <script type="text/javascript">
+            $(document).ready(function(){
+                  
+                  $("#signin-btn").click(function(){
+                    var signphone = $("#signphone").val();
+                    var signpassword = $("#signpassword").val();
+                    if (signphone == ''){
+                      message("Enter the phone!")
+                    }else if(signpassword == ''){
+                      message("Enter the password!")
+                    }else{
+                      $.ajax({
+                          url:"/login", 
+                          type: "post", 
+                          dataType: 'json',
+                          data: {"signphone":signphone, "signpassword":signpassword},
+                            success: function(output){
+                              if (output == 0){
+                                message('Username and Password does not match!')
+                              }else if (output == 1){
+                                  location.href = 'mainpage'                             }
+                            }
+                          });
+                    }
+                  });
+
+                  $("#signup-btn").click(function(){
+                    var regusername = $("#regusername").val();
+                    var regphone = $("#regphone").val();
+                    var regemail = $("#regemail").val();
+                    var regpassword = $("#regpassword").val();
+                    
+
+                    if (regusername == ''){
+                      message("Enter the Username!")
+                    }else if(regphone == ''){
+                      message("Enter the Phone!")
+                    }else if(regemail == ''){
+                      message("Enter the Email!")
+                    }else if(regpassword == ''){
+                      message("Enter the Password!")
+                    
+                    }else{
+                      $.ajax({
+                                  url:"/register", 
+                                  type: "post", 
+                                  dataType: 'json',
+                                  data: {"regusername":regusername, "regphone":regphone, "regemail":regemail, "regpassword":regpassword},
+                                    success: function(output){
+                                      if (output == 0){
+                                        message('Username and Password does not match!')
+                                        $(".errormessage").css("color","red")
+                                      }else if (output == 1){
+                                        message("Registeration Completed! Login to continue")
+                                        $(".errormessage").css("color","green")
+                                        $("#loglink").click()
+                                      }
+                                    }
+                                  });
+                    }
+                  });
+
+
+                  function message(message){
+                    $(".errormessage").html(message)
+                    $(".errormessage").show()
+                    $(".errormessage").css("color","red")
+                    return false
+                  }
+          });
+
+       </script>
+
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindLead</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="nav_logo">FindLead</a>
+
+         <ul class="nav_items">
+          <li class="nav_item">
+            <a href="{{url_for('main')}}" class="nav_link">Home</a>
+            <a href="{{url_for('about')}}" class="nav_link">About</a>
+            <a href="{{url_for('services')}}" class="nav_link">Services</a>
+            <a href="{{url_for('contact')}}" class="nav_link">Contact</a>
+          </li>
+        </ul>
+
+        <button class="button" id="form-open">Login</button>
+      </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="home">
+      <div class="centerbox">
+        <center><h3>Our Services</h3></center>
+        <br>
+        <p style="text-align: justify;">
+          <ul>
+        <li><strong>Real-Time Twitter Data Analysis:</strong> We collect and analyze Twitter data in real-time, providing up-to-date sentiment analysis on various political topics and trends.</li>
+        <li><strong>Sentiment Analysis:</strong> Our machine learning models classify tweets into positive, negative, or neutral sentiments, allowing users to gauge public opinion regarding different political parties and candidates.</li>
+        <li><strong>Predictive Analytics:</strong> Through historical data analysis and predictive modeling, we strive to offer insights into potential election outcomes and trends, helping users anticipate which party might gain traction or win in upcoming elections.</li>
+    </ul>
+        </p>
+      </div>
+    </section>
+
+
+  </body>
+</html>
